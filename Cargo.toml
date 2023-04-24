@@ -1,0 +1,31 @@
+[package]
+name = "pixel-test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = { version = "0.9", features = ["trace_tracy"] }
+bevy-inspector-egui = { git = "https://github.com/jakobhellermann/bevy-inspector-egui.git", rev = "4a8f3c3" }
+shrinkwraprs = "0.3"
+palette = "0.6"
+rand = "0.8"
+lazy_static = "1.4"
+itertools = "0.10"
+slotmap = "1.0"
+readonly = "0.2"
+num-integer = "0.1"
+strum = { version = "0.24", features = ["derive"] }
+ndarray = "0.15"
+
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+debug = true
